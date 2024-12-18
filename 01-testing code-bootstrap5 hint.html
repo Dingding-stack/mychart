@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>hard work</title>
+		<link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="./bootstrap/bootstrap-icons.css">
+		<script src = "./bootstrap/bootstrap.min.js"></script>
+		
+		<style>
+			#myToast {
+				width: 200px;
+				height: 50px;
+				background-color: pink;
+				line-height: 50px;
+				position: fixed;
+				left: 50%;
+				transform: translateX(-50%);
+				text-align: center;
+			}
+		</style>
+    </head>
+    <body>
+        <div id="myToast" class = "toast">The hint</div>
+		<script>
+			const toastBox =  document.querySelector('#myToast')
+			//the boostrap
+			const toast = new bootstrap.Toast(toastBox, {
+				animation: true,
+				autohide: true,
+				delay: 3000,
+
+
+			})
+
+			toast.show()
+		
+
+
+
+		</script>
+        <script></script>
+    </body>
+</html>

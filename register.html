@@ -94,8 +94,64 @@
   <script src="./lib/axios.js"></script>
   <script src="./js/common.js"></script>
   <script>
+    //tip('user cannot be blank')
+    const form = document.querySelector('form')
+    form.addEventListener('submit', async function(e){
+      e.preventDefault()
+      //collect data
+      const data = serialize(form, {harsh:true})
+      console.log(data)
+      if(!data.username) {
+        return tip('username not be blank')
+      }
+      const reg1 = /^[a-zA-Z0-9_]{6,}$/
+      
+      if(!reg1.test(data.username)){
+        return tip('username, at 6 charactristics')
+      }
+
+      if(!data.password) {
+        return tip('password not be blank')
+      }
+      const reg2 = /^[a-zA-Z0-9_]{6,}$/
+
+      if(!reg2.test(data.password)){
+        return tip('password, at 6 charactristics')
+      }
+      
+
+      try{
+        const res = await axios.post('/register',data)
+      console.log(res)
+      tip('register successfully')
+
+      setTimeout(() => {
+        location.href = './login.html'
+        
+      }, 1000);
+      
+
+
+      }catch(error){
+        console.dir(error)
+        if(error.response.status === 409 ){
+          tip(error.response.data.message)
+        }
+        tip('Server exception.please try later')
+
+      }
+
+
+    })
+
+    //sending request
+   
+
+
+
 
   </script>
 </body>
-
+ 
 </html>
+ 

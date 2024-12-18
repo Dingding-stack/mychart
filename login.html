@@ -93,6 +93,50 @@
   <script src="./lib/axios.js"></script>
   <script src="./js/common.js"></script>
   <script>
+    const form = document.querySelector('form')
+    form.addEventListener('submit', async function(e){
+      e.preventDefault()
+      //collecting data
+      const data = serialize(form, {harsh:true})
+      console.log(data)
+
+      //data verification 
+      if(!data.username){
+        return tip('username can not be blank')
+
+      }
+      if(!data.password){
+        return tip('password cannot be blank')
+      }
+
+      //sending request
+
+      try{
+        const res = await axios.post('/login',data)
+        console.log(res)
+        tip('login succesfully')
+        setTimeout(function(){
+          location.href = './index.html'
+
+        },1000)
+        
+
+
+      }catch(error){
+        console.dir(error)
+        if(error.response.status === 400){
+          return tip(error.response.data.message)
+
+        }
+        tip('Server exception, please try later')
+
+      }
+      
+
+      
+
+    })
+
 
   </script>
 </body>
