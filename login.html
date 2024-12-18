@@ -115,10 +115,17 @@
         const res = await axios.post('/login',data)
         console.log(res)
         tip('login succesfully')
+        
+        localStorage.setItem('user-token', res.data.data.token)
+
+        //saving username
+        localStorage.setItem('user-username', res.data.data.username)
+
         setTimeout(function(){
           location.href = './index.html'
 
         },1000)
+
         
 
 

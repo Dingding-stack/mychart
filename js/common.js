@@ -23,3 +23,32 @@ function tip(msg = 'hints'){
 
 //setting request root url
 axios.defaults.baseURL = 'http://ajax-api.itheima.net'
+
+//username (many pages needed)
+const username = document.querySelector('.navbar-nav .font-weight-bold')
+
+if(username){
+	username.innerHTML = localStorage.getItem('user-username')
+
+
+}
+
+const logout = document.querySelector('#logout')
+if(logout){
+	logout.addEventListener('click',function(){
+
+		//remove the token 
+	     localStorage.removeItem('user-token')
+		 localStorage.removeItem('user-username')
+
+
+
+		// go to login.html
+
+		location.href= './login.html'
+
+	})
+
+}
+
+   
