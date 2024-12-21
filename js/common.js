@@ -51,4 +51,54 @@ if(logout){
 
 }
 
+//request lanjieqi
+axios.interceptors.request.use(
+    function (config) {
+        //console.log('before request')
+        //alert('sending request')
+      // Do something before sending the request
+      //console.log('config', config)
+      config.headers.authorization
+      const token = localStorage.getItem('user-token')
+      if(token){
+        config.headers.authorization = token
+      }
+
+     return config;
+    },
+    function (error) {
+      // Handle the error
+      return Promise.reject(error);
+    }
+  );
+
+  //response
+
+  axios.interceptors.response.use(
+    function (response) {
+       //alert('sucessful response')
+       //console.log('obtaining a successful response')
+       //console.log('response',response)
+      // Do something with the response data
+      //return response;
+      return response.data
+      
+    },
+    function (error) {
+      // Handle the error
+      //alert('error')
+      console.log('a failure error')
+      console.dir(error)
+      
+      if (error.response.status === 401){
+        alert('token is invalid')
+        location.href ='.login.html'
+        localStorage.removeItem('user-token')
+        localStorage.removeItem('user-username')
+        return
+      }
+      return Promise.reject(error);
+    }
+  );
+
    

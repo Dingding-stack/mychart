@@ -113,13 +113,15 @@
 
       try{
         const res = await axios.post('/login',data)
-        console.log(res)
+        console.log('login result',res)
         tip('login succesfully')
+
+        //for the set of interceptors, res.data.data.token should be res.data.token
         
-        localStorage.setItem('user-token', res.data.data.token)
+        localStorage.setItem('user-token', res.data.token)
 
         //saving username
-        localStorage.setItem('user-username', res.data.data.username)
+        localStorage.setItem('user-username', res.data.username)
 
         setTimeout(function(){
           location.href = './index.html'
